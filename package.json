@@ -1,0 +1,32 @@
+{
+  "name": "myexpressapp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.4",
+    "@types/jwt-simple": "^0.5.33",
+    "@types/node": "^18.11.14",
+    "dotenv": "^16.0.3",
+    "hashlib": "^1.0.1",
+    "requests": "^0.3.0"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "express": "^4.18.2",
+    "fast-csv": "^4.3.6",
+    "http-errors": "^2.0.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "strong-soap": "^3.5.3",
+    "uuid": "^9.0.0",
+    "uuidv4": "^6.2.13",
+    "uuidv5": "^1.0.0",
+    "xml2js": "^0.6.2",
+    "xmlbuilder": "^15.1.1",
+    "xmlhttprequest": "^1.8.0",
+    "xpath": "^0.0.33"
+  }
+}

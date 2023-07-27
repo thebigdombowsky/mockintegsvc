@@ -1,0 +1,1125 @@
+<wsdl:definitions name="MedPortalIntegrationWebService" targetNamespace="http://swisslog.com/ppsys" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://swisslog.com/ppsys" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:i0="http://tempuri.org/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <wsp:Policy wsu:Id="WSHttpBinding_IMedPortalIntegrationWebService_policy">
+      <wsp:ExactlyOne>
+         <wsp:All>
+            <wsam:Addressing>
+               <wsp:Policy>
+                  <wsam:AnonymousResponses/>
+               </wsp:Policy>
+            </wsam:Addressing>
+         </wsp:All>
+      </wsp:ExactlyOne>
+   </wsp:Policy>
+   <wsdl:types>
+      <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+         <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+         <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+         <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+         <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+         <xs:element name="byte" nillable="true" type="xs:byte"/>
+         <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+         <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+         <xs:element name="double" nillable="true" type="xs:double"/>
+         <xs:element name="float" nillable="true" type="xs:float"/>
+         <xs:element name="int" nillable="true" type="xs:int"/>
+         <xs:element name="long" nillable="true" type="xs:long"/>
+         <xs:element name="QName" nillable="true" type="xs:QName"/>
+         <xs:element name="short" nillable="true" type="xs:short"/>
+         <xs:element name="string" nillable="true" type="xs:string"/>
+         <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+         <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+         <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+         <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+         <xs:element name="char" nillable="true" type="tns:char"/>
+         <xs:simpleType name="char">
+            <xs:restriction base="xs:int"/>
+         </xs:simpleType>
+         <xs:element name="duration" nillable="true" type="tns:duration"/>
+         <xs:simpleType name="duration">
+            <xs:restriction base="xs:duration">
+               <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+               <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+               <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+            </xs:restriction>
+         </xs:simpleType>
+         <xs:element name="guid" nillable="true" type="tns:guid"/>
+         <xs:simpleType name="guid">
+            <xs:restriction base="xs:string">
+               <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+            </xs:restriction>
+         </xs:simpleType>
+         <xs:attribute name="FactoryType" type="xs:QName"/>
+         <xs:attribute name="Id" type="xs:ID"/>
+         <xs:attribute name="Ref" type="xs:IDREF"/>
+      </xs:schema>
+      <xs:schema elementFormDefault="qualified" targetNamespace="http://swisslog.com/ppsys/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://swisslog.com/ppsys/types">
+         <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+         <xs:complexType name="CabinetDispenseRequest">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:DispenseRequestType">
+                  <xs:sequence>
+                     <xs:element name="CabinetCode" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="WardCode" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="CabinetDispenseRequest" nillable="true" type="tns:CabinetDispenseRequest"/>
+         <xs:complexType name="DispenseRequestType">
+            <xs:sequence/>
+         </xs:complexType>
+         <xs:element name="DispenseRequestType" nillable="true" type="tns:DispenseRequestType"/>
+         <xs:complexType name="PatientDispenseRequest">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:DispenseRequestType">
+                  <xs:sequence>
+                     <xs:element name="Bed" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="PatientCode" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="PatientCostCenter" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="PatientDateOfBirth" type="xs:dateTime"/>
+                     <xs:element name="PatientFirstName" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="PatientGender" type="tns:PatientSex"/>
+                     <xs:element name="PatientLastName" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="PatientMiddleName" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="Room" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="Ward" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="PatientDispenseRequest" nillable="true" type="tns:PatientDispenseRequest"/>
+         <xs:simpleType name="PatientSex">
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="M"/>
+               <xs:enumeration value="F"/>
+            </xs:restriction>
+         </xs:simpleType>
+         <xs:element name="PatientSex" nillable="true" type="tns:PatientSex"/>
+         <xs:complexType name="GenericProductUpdate">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPRequest">
+                  <xs:sequence>
+                     <xs:element name="Productinfo" nillable="true" type="tns:GenericProductInfo">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="GenericProductUpdate" nillable="true" type="tns:GenericProductUpdate"/>
+         <xs:complexType name="MPRequest">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPMessage">
+                  <xs:sequence/>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="MPRequest" nillable="true" type="tns:MPRequest"/>
+         <xs:complexType name="MPMessage">
+            <xs:sequence>
+               <xs:element name="MessageHeader" nillable="true" type="tns:MessageHeader">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="MPMessage" nillable="true" type="tns:MPMessage"/>
+         <xs:complexType name="MessageHeader">
+            <xs:sequence>
+               <xs:element name="MsgId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="MsgTime" type="xs:dateTime"/>
+               <xs:element name="MsgType" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Receiver" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Sender" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="TransCode" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Version" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="MessageHeader" nillable="true" type="tns:MessageHeader"/>
+         <xs:complexType name="GenericProductInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="AssignenmentInfos" nillable="true" type="tns:ArrayOfGenericProductAssignenmentInfo">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="ControlledSubstance" type="xs:boolean"/>
+               <xs:element name="DosageForm" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="DrugClassification" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="GenericProductName" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="ManufacturerProductInfos" nillable="true" type="tns:ArrayOfManufacturerProductInfo">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string"/>
+               <xs:element name="Refrigerated" type="xs:boolean"/>
+               <xs:element minOccurs="0" name="Strength" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="Volume" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="GenericProductInfo" nillable="true" type="tns:GenericProductInfo"/>
+         <xs:complexType name="ArrayOfGenericProductAssignenmentInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" maxOccurs="unbounded" name="GenericProductAssignenmentInfo" nillable="true" type="tns:GenericProductAssignenmentInfo"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="ArrayOfGenericProductAssignenmentInfo" nillable="true" type="tns:ArrayOfGenericProductAssignenmentInfo"/>
+         <xs:complexType name="GenericProductAssignenmentInfo">
+            <xs:sequence>
+               <xs:element name="AutomationMachineId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="ReplenishmentUoMId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="GenericProductAssignenmentInfo" nillable="true" type="tns:GenericProductAssignenmentInfo"/>
+         <xs:complexType name="ArrayOfManufacturerProductInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" maxOccurs="unbounded" name="ManufacturerProductInfo" nillable="true" type="tns:ManufacturerProductInfo"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="ArrayOfManufacturerProductInfo" nillable="true" type="tns:ArrayOfManufacturerProductInfo"/>
+         <xs:complexType name="ManufacturerProductInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="AdditionalProductId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="BarcodeInfos" nillable="true" type="tns:ArrayOfBarcodeInfo">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="ManufacturerName" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="ManufacturerProductId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="ManufacturerProductName" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="UoMInfos" nillable="true" type="tns:ArrayOfUoMInfo">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="ManufacturerProductInfo" nillable="true" type="tns:ManufacturerProductInfo"/>
+         <xs:complexType name="ArrayOfBarcodeInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" maxOccurs="unbounded" name="BarcodeInfo" nillable="true" type="tns:BarcodeInfo"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="ArrayOfBarcodeInfo" nillable="true" type="tns:ArrayOfBarcodeInfo"/>
+         <xs:complexType name="BarcodeInfo">
+            <xs:sequence>
+               <xs:element name="ProductBarcodeId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="UoM" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="BarcodeInfo" nillable="true" type="tns:BarcodeInfo"/>
+         <xs:complexType name="ArrayOfUoMInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" maxOccurs="unbounded" name="UoMInfo" nillable="true" type="tns:UoMInfo"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="ArrayOfUoMInfo" nillable="true" type="tns:ArrayOfUoMInfo"/>
+         <xs:complexType name="UoMInfo">
+            <xs:sequence>
+               <xs:element name="BaseUoM" type="xs:boolean"/>
+               <xs:element name="Ratio" type="xs:int"/>
+               <xs:element name="UoM" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="UoMInfo" nillable="true" type="tns:UoMInfo"/>
+         <xs:complexType name="GenericProductUpdateResponse">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPResponse">
+                  <xs:sequence/>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="GenericProductUpdateResponse" nillable="true" type="tns:GenericProductUpdateResponse"/>
+         <xs:complexType name="MPResponse">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPMessage">
+                  <xs:sequence>
+                     <xs:element name="MessageError" nillable="true" type="tns:MessageError">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="MPResponse" nillable="true" type="tns:MPResponse"/>
+         <xs:complexType name="MessageError">
+            <xs:sequence>
+               <xs:element name="Code" type="tns:ErrorCode"/>
+               <xs:element name="Message" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="MessageError" nillable="true" type="tns:MessageError"/>
+         <xs:simpleType name="ErrorCode">
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="UnexpectedError">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="Ok">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="InvalidAutomationMachineId">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="InvalidRequestMessage">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="InternalErrorInDatabase">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="InvalidFacilityId">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="InvalidProgramConfiguration">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="InvalidTransCode">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="InvalidPrescriptionNumber">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+         <xs:element name="ErrorCode" nillable="true" type="tns:ErrorCode"/>
+         <xs:complexType name="LoadRequest">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPRequest">
+                  <xs:sequence>
+                     <xs:element name="AutomationMachineId" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="BarcodeProductId" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="ExpiryDate" nillable="true" type="xs:dateTime"/>
+                     <xs:element name="GenericProductId" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0" name="LoadUnitId" nillable="true" type="xs:string"/>
+                     <xs:element minOccurs="0" name="LotCode" nillable="true" type="xs:string"/>
+                     <xs:element name="ManufacturerProductId" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="Quantity" type="xs:double"/>
+                     <xs:element name="SourceLocationId" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="SourceLocationName" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="TaskKey" type="xs:long"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="LoadRequest" nillable="true" type="tns:LoadRequest"/>
+         <xs:complexType name="LoadRequestResponse">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPResponse">
+                  <xs:sequence>
+                     <xs:element name="TaskKey" type="xs:long"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="LoadRequestResponse" nillable="true" type="tns:LoadRequestResponse"/>
+         <xs:complexType name="DispenseRequest">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPRequest">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="PatientInfo" nillable="true" type="tns:PatientInfo">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="DispenseInfos" nillable="true" type="tns:ArrayOfDispenseInfo">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="ExtraInfos" nillable="true" type="tns:ArrayOfExtraInfo">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="OrderId" nillable="true" type="xs:string"/>
+                     <xs:element name="OrderType" nillable="true" type="xs:string"/>
+                     <xs:element name="Priority" type="xs:int"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="DispenseRequest" nillable="true" type="tns:DispenseRequest"/>
+         <xs:complexType name="PatientInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="ExtraInfos" nillable="true" type="tns:ArrayOfExtraInfo">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="pointOfCare" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="Bed" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="ContactId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="ManualDestination" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="PatientId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="PatientName" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="PatientBirthDay" nillable="true" type="xs:dateTime">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="PatientFirstName" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="PatientMiddleName" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="PatientLastName" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="Room" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="PatientSex" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="PatientInfo" nillable="true" type="tns:PatientInfo"/>
+         <xs:complexType name="ArrayOfExtraInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" maxOccurs="unbounded" name="ExtraInfo" nillable="true" type="tns:ExtraInfo"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="ArrayOfExtraInfo" nillable="true" type="tns:ArrayOfExtraInfo"/>
+         <xs:complexType name="ExtraInfo">
+            <xs:sequence>
+               <xs:element name="FieldCode" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Value" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="ExtraInfo" nillable="true" type="tns:ExtraInfo"/>
+         <xs:complexType name="ArrayOfDispenseInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" maxOccurs="unbounded" name="DispenseInfo" nillable="true" type="tns:DispenseInfo"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="ArrayOfDispenseInfo" nillable="true" type="tns:ArrayOfDispenseInfo"/>
+         <xs:complexType name="DispenseInfo">
+            <xs:sequence>
+               <xs:element name="AdministrationDate" nillable="true" type="xs:dateTime"/>
+               <xs:element minOccurs="0" name="AdministrationTime" nillable="true" type="xs:dateTime"/>
+               <xs:element name="AutomationMachineId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="GenericProductId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="OrderLineNumber" type="xs:int"/>
+               <xs:element name="Quantity" type="xs:double"/>
+               <xs:element name="QuantityOrdered" type="xs:double"/>
+               <xs:element name="ReservationKey" type="xs:long"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="DispenseInfo" nillable="true" type="tns:DispenseInfo"/>
+         <xs:complexType name="DispenseRequestResponse">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPResponse">
+                  <xs:sequence/>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="DispenseRequestResponse" nillable="true" type="tns:DispenseRequestResponse"/>
+         <xs:complexType name="UnloadRequest">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPRequest">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="WardInfo" nillable="true" type="tns:WardInfo">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="DispenseInfos" nillable="true" type="tns:ArrayOfUnloadInfo">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="ExtraInfos" nillable="true" type="tns:ArrayOfExtraInfo">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="UnloadRequest" nillable="true" type="tns:UnloadRequest"/>
+         <xs:complexType name="WardInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="extraInfos" nillable="true" type="tns:ArrayOfExtraInfo">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="pointOfCare" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="Bed" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="ContactId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="ManualDestination" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="Room" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="WardInfo" nillable="true" type="tns:WardInfo"/>
+         <xs:complexType name="ArrayOfUnloadInfo">
+            <xs:sequence>
+               <xs:element minOccurs="0" maxOccurs="unbounded" name="UnloadInfo" nillable="true" type="tns:UnloadInfo"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="ArrayOfUnloadInfo" nillable="true" type="tns:ArrayOfUnloadInfo"/>
+         <xs:complexType name="UnloadInfo">
+            <xs:sequence>
+               <xs:element name="ReservationKey" type="xs:long"/>
+               <xs:element name="AutomationMachineId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="GenericProductId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="ManufactureId" nillable="true" type="xs:string">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Quantity" type="xs:double"/>
+               <xs:element name="ExtraInfos" nillable="true" type="tns:ArrayOfExtraInfo">
+                  <xs:annotation>
+                     <xs:appinfo>
+                        <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                     </xs:appinfo>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="UnloadInfo" nillable="true" type="tns:UnloadInfo"/>
+         <xs:complexType name="UnloadRequestResponse">
+            <xs:complexContent mixed="false">
+               <xs:extension base="tns:MPResponse">
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="taskKey" type="xs:int">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0" name="currentLocation" nillable="true" type="xs:string">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0" name="quantity" type="xs:double">
+                        <xs:annotation>
+                           <xs:appinfo>
+                              <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+                           </xs:appinfo>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+         <xs:element name="UnloadRequestResponse" nillable="true" type="tns:UnloadRequestResponse"/>
+      </xs:schema>
+      <xs:schema elementFormDefault="qualified" targetNamespace="http://swisslog.com/ppsys" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+         <xs:import namespace="http://swisslog.com/ppsys/types"/>
+         <xs:element name="testRequest">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="testRequestResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="testRequestResult" nillable="true" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="productInformationUpdate">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="request" nillable="true" type="q1:GenericProductUpdate" xmlns:q1="http://swisslog.com/ppsys/types"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="productInformationUpdateResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="productInformationUpdateResult" nillable="true" type="q2:GenericProductUpdateResponse" xmlns:q2="http://swisslog.com/ppsys/types"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="loadRequest">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="request" nillable="true" type="q3:LoadRequest" xmlns:q3="http://swisslog.com/ppsys/types"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="loadRequestResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="loadRequestResult" nillable="true" type="q4:LoadRequestResponse" xmlns:q4="http://swisslog.com/ppsys/types"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="dispenseRequest">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="request" nillable="true" type="q5:DispenseRequest" xmlns:q5="http://swisslog.com/ppsys/types"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="dispenseRequestResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="dispenseRequestResult" nillable="true" type="q6:DispenseRequestResponse" xmlns:q6="http://swisslog.com/ppsys/types"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="unloadRequest">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="request" nillable="true" type="q7:UnloadRequest" xmlns:q7="http://swisslog.com/ppsys/types"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="unloadRequestResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="unloadRequestResult" nillable="true" type="q8:UnloadRequestResponse" xmlns:q8="http://swisslog.com/ppsys/types"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:message name="IMedPortalIntegrationWebService_testRequest_InputMessage">
+      <wsdl:part name="parameters" element="tns:testRequest"/>
+   </wsdl:message>
+   <wsdl:message name="IMedPortalIntegrationWebService_testRequest_OutputMessage">
+      <wsdl:part name="parameters" element="tns:testRequestResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IMedPortalIntegrationWebService_productInformationUpdate_InputMessage">
+      <wsdl:part name="parameters" element="tns:productInformationUpdate"/>
+   </wsdl:message>
+   <wsdl:message name="IMedPortalIntegrationWebService_productInformationUpdate_OutputMessage">
+      <wsdl:part name="parameters" element="tns:productInformationUpdateResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IMedPortalIntegrationWebService_loadRequest_InputMessage">
+      <wsdl:part name="parameters" element="tns:loadRequest"/>
+   </wsdl:message>
+   <wsdl:message name="IMedPortalIntegrationWebService_loadRequest_OutputMessage">
+      <wsdl:part name="parameters" element="tns:loadRequestResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IMedPortalIntegrationWebService_dispenseRequest_InputMessage">
+      <wsdl:part name="parameters" element="tns:dispenseRequest"/>
+   </wsdl:message>
+   <wsdl:message name="IMedPortalIntegrationWebService_dispenseRequest_OutputMessage">
+      <wsdl:part name="parameters" element="tns:dispenseRequestResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IMedPortalIntegrationWebService_unloadRequest_InputMessage">
+      <wsdl:part name="parameters" element="tns:unloadRequest"/>
+   </wsdl:message>
+   <wsdl:message name="IMedPortalIntegrationWebService_unloadRequest_OutputMessage">
+      <wsdl:part name="parameters" element="tns:unloadRequestResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="IMedPortalIntegrationWebService">
+      <wsdl:operation name="testRequest">
+         <wsdl:input wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/testRequest" message="tns:IMedPortalIntegrationWebService_testRequest_InputMessage"/>
+         <wsdl:output wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/testRequestResponse" message="tns:IMedPortalIntegrationWebService_testRequest_OutputMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="productInformationUpdate">
+         <wsdl:input wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/productInformationUpdate" message="tns:IMedPortalIntegrationWebService_productInformationUpdate_InputMessage"/>
+         <wsdl:output wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/productInformationUpdateResponse" message="tns:IMedPortalIntegrationWebService_productInformationUpdate_OutputMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="loadRequest">
+         <wsdl:input wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/loadRequest" message="tns:IMedPortalIntegrationWebService_loadRequest_InputMessage"/>
+         <wsdl:output wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/loadRequestResponse" message="tns:IMedPortalIntegrationWebService_loadRequest_OutputMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="dispenseRequest">
+         <wsdl:input wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/dispenseRequest" message="tns:IMedPortalIntegrationWebService_dispenseRequest_InputMessage"/>
+         <wsdl:output wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/dispenseRequestResponse" message="tns:IMedPortalIntegrationWebService_dispenseRequest_OutputMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="unloadRequest">
+         <wsdl:input wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/unloadRequest" message="tns:IMedPortalIntegrationWebService_unloadRequest_InputMessage"/>
+         <wsdl:output wsam:Action="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/unloadRequestResponse" message="tns:IMedPortalIntegrationWebService_unloadRequest_OutputMessage"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="WSHttpBinding_IMedPortalIntegrationWebService" type="tns:IMedPortalIntegrationWebService">
+      <wsp:PolicyReference URI="#WSHttpBinding_IMedPortalIntegrationWebService_policy"/>
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="testRequest">
+         <soap12:operation soapAction="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/testRequest" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="productInformationUpdate">
+         <soap12:operation soapAction="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/productInformationUpdate" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="loadRequest">
+         <soap12:operation soapAction="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/loadRequest" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="dispenseRequest">
+         <soap12:operation soapAction="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/dispenseRequest" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="unloadRequest">
+         <soap12:operation soapAction="http://swisslog.com/ppsys/IMedPortalIntegrationWebService/unloadRequest" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="MedPortalIntegrationWebService">
+      <wsdl:port name="WSHttpBinding_IMedPortalIntegrationWebService" binding="tns:WSHttpBinding_IMedPortalIntegrationWebService">
+         <soap12:address location="http://10.10.100.30:1200/Service/"/>
+         <wsa10:EndpointReference>
+            <wsa10:Address>http://10.10.100.56:16384/Service/</wsa10:Address>
+         </wsa10:EndpointReference>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>
